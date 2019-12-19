@@ -1,0 +1,254 @@
+﻿<Window x:Class="ProjetDevAppli.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjetDevAppli"
+        mc:Ignorable="d"
+        Title="Ifrocean" Height="450" Width="800">
+
+    <TabControl AllowDrop="True">
+        <TabItem Header="Personnes">
+            <StackPanel Orientation="Vertical">
+                <Label Content="Admins :"></Label>
+                <Grid>
+                    <DataGrid Name="listeAdmins" ItemsSource="{Binding}" AutoGenerateColumns="false" HorizontalAlignment="Left" Margin="200,0"  Grid.ColumnSpan="2" BorderBrush="Black" Background="#FFA4A4A4" SelectionChanged="listeAdmins_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="id" Binding="{Binding idPersonneProperty, Mode=OneWay}"/>
+                            <DataGridTextColumn Header="Nom" Binding="{Binding nomPersonneProperty}"/>
+                            <DataGridTextColumn Header="Prénom" Binding="{Binding prénomPersonneProperty}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button x:Name="delAdminButton" Content="Supprimer un admin"  HorizontalAlignment="Center" Click="delAdminButton_Click" Height="25" Width="130"></Button>
+                </Grid>
+                
+                
+
+                <Label Content="Bénévoles :"></Label>
+                <Grid>
+                    <DataGrid Name="listeBenevoles" ItemsSource="{Binding}" AutoGenerateColumns="false" HorizontalAlignment="Left" Margin="200,0"  Grid.ColumnSpan="2" BorderBrush="Black" Background="#FFA4A4A4" SelectionChanged="listeBenevoles_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="id" Binding="{Binding idPersonneProperty, Mode=OneWay}"/>
+                            <DataGridTextColumn Header="Nom" Binding="{Binding nomPersonneProperty, Mode=TwoWay}"/>
+                            <DataGridTextColumn Header="Prénom" Binding="{Binding prénomPersonneProperty, Mode=TwoWay}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button x:Name="delBeneButton" Content="Supprimer un bénévole"  HorizontalAlignment="Center" Click="delBeneButton_Click" Height="25" Width="130"></Button>
+                </Grid>
+                
+                
+
+                <Label Content="Ajout d'une personne :"></Label>
+                <Grid Name ="grid" Height="300" Margin="0,0,0.300,0" VerticalAlignment="Top">
+                    <StackPanel>
+                        <Label Content="Nom :"></Label>
+                        <TextBox Name="nomTextBox" Height="20" Width="200" HorizontalAlignment="Left"/>
+                        <Label Content="Prénom :"></Label>
+                        <TextBox Name="prenomTextBox" Height="20" Width="200" HorizontalAlignment="Left"/>
+                        <CheckBox x:Name="checkAdmin">Admin</CheckBox>
+                        <Button x:Name="addPersonneButton" Content="Ajouter" Click="addPersonneButton_Click" Height="25" Margin="241,5,230,0" HorizontalAlignment="Center" Width="100" RenderTransformOrigin="0.5,2.31"/>
+                    </StackPanel>
+                </Grid>
+
+            </StackPanel>
+        </TabItem>
+
+        <TabItem Header="Plages">
+            <StackPanel>
+                <Label Content="Plages :"></Label>
+                <Grid>
+                    <DataGrid Name="listePlages" ItemsSource="{Binding}" AutoGenerateColumns="false" HorizontalAlignment="Left" Margin="200,0"  Grid.ColumnSpan="2" BorderBrush="Black" Background="#FFA4A4A4" SelectionChanged="listePlages_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="id" Binding="{Binding idPlageProperty, Mode=OneWay}"/>
+                            <DataGridTextColumn Header="Nom" Binding="{Binding nomPlageProperty}"/>
+                            <DataGridTextColumn Header="Commune" Binding="{Binding communeProperty}"/>
+                            <DataGridTextColumn Header="Département" Binding="{Binding départementProperty}"/>
+                            <DataGridTextColumn Header="Superficie" Binding="{Binding superficieProperty}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+
+                <Label Content="Ajout d'une plage :"></Label>
+                <Grid Name ="gridPlage" Height="300" Margin="0,0,0.300,0" VerticalAlignment="Top">
+                    <StackPanel>
+                        <Label Content="Nom :"></Label>
+                        <TextBox Name="nomPlageTextBox" Height="20" Width="200" HorizontalAlignment="Left"/>
+                        <Label Content="Commune :"></Label>
+                        <TextBox Name="communeTextBox" Height="20" Width="200" HorizontalAlignment="Left"/>
+                        <Label Content="Département :"></Label>
+                        <TextBox Name="departementTextBox" Height="20" Width="200" HorizontalAlignment="Left"/>
+                        <Label Content="Superficie :"></Label>
+                        <TextBox Name="superficieTextBox" Height="20" Width="200" HorizontalAlignment="Left" PreviewTextInput="NumberValidationTextBox"/>
+                        <Button x:Name="addPlageButton" Content="Ajouter" Click="addPlageButton_Click" Height="25" Margin="241,5,230,0" HorizontalAlignment="Center" Width="100" RenderTransformOrigin="0.5,2.31"/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </TabItem>
+
+        <TabItem Header="Espèces">
+            <StackPanel>
+                <Label Content="Espèces :"></Label>
+                <Grid>
+                    <DataGrid Name="listeEspèces" ItemsSource="{Binding}" AutoGenerateColumns="false" HorizontalAlignment="Left" Margin="200,0"  Grid.ColumnSpan="2" BorderBrush="Black" Background="#FFA4A4A4" SelectionChanged="listeEspeces_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="id" Binding="{Binding idEspèceProperty, Mode=OneWay}"/>
+                            <DataGridTextColumn Header="Nom" Binding="{Binding nomEspèceProperty}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </StackPanel>
+        </TabItem>
+
+        <TabItem Header="Etudes">
+            <StackPanel>
+                <Label Content="Etudes :"></Label>
+                <Grid>
+                    <DataGrid Name="listeEtudes" ItemsSource="{Binding}" AutoGenerateColumns="False" HorizontalAlignment="Center" Margin="200,0" Grid.ColumnSpan="2" BorderBrush="Black" Background="#FFA4A4A4" SelectionChanged="listeEtudes_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding idEtudeProperty, Mode=OneWay}"/>
+                            <DataGridTextColumn Header="Nom de l'étude" Binding="{Binding nomEtudeProperty, Mode=TwoWay}"/>
+                            <DataGridTextColumn Header="Date de l'étude" Binding="{Binding dateEtudeProperty, Mode=TwoWay}"/>
+                            <DataGridTextColumn Header="Admin" Binding="{Binding idPersonneProperty.nomPersonneProperty, Mode=OneWay}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+
+                <Label Content="Ajouter une étude :"></Label>
+                <Grid Name ="gridEtude" Height="300" Margin="0,0,0.300,0" VerticalAlignment="Top">
+                    <StackPanel>
+                        <Label Content="Nom :"></Label>
+                        <TextBox Name="nomEtudeTextBox" Height="20" Width="200" HorizontalAlignment="Left"/>
+                        <Label Content="Date :"></Label>
+                        <DatePicker Name="dateEtudeDatePicker" Width="200" HorizontalAlignment="Left"></DatePicker>
+                        <Label Content="Créateur :"></Label>
+                        <ComboBox Name="listeAdminsSelect"
+                                  Width="200"
+                                  HorizontalAlignment="Left"
+                                  DisplayMemberPath="nomPersonneProperty"
+                                  ItemsSource="{Binding}"
+                                  SelectedItem="{Binding idPersonneProperty}">
+                        </ComboBox>
+                            <Button x:Name="addEtudeButton" Content="Ajouter" Click="addEtudeButton_Click" Height="25" Margin="241,5,230,0" HorizontalAlignment="Center" Width="100" RenderTransformOrigin="0.5,2.31"/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </TabItem>
+
+
+        <TabItem Header="Zone de prélèvement">
+            <StackPanel>
+                <Label Content="Liste des zones :"/>
+                <DataGrid Name="listeZones2" ItemsSource="{Binding}" AutoGenerateColumns="False" HorizontalAlignment="Center" Margin="200,0" Grid.ColumnSpan="2" BorderBrush="Black" Background="#FFA4A4A4" SelectionChanged="listeZones_SelectionChanged">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding idZonePrelevementProperty, Mode=OneWay}"/>
+                        <DataGridTextColumn Header="Nom de l'étude" Binding="{Binding idEtudeProperty.nomEtudeProperty, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="Nom de la plage" Binding="{Binding idPlageProperty.nomPlageProperty, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="Angle 1" Binding="{Binding Angle1Property, Mode=OneWay}"/>
+                        <DataGridTextColumn Header="Angle 2" Binding="{Binding Angle2Property, Mode=OneWay}"/>
+                        <DataGridTextColumn Header="Angle 3" Binding="{Binding Angle3Property, Mode=OneWay}"/>
+                        <DataGridTextColumn Header="Angle 4" Binding="{Binding Angle4Property, Mode=OneWay}"/>
+                        <DataGridTextColumn Header="Administrateur" Binding="{Binding idPersonneProperty.nomPersonneProperty, Mode=OneWay}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Label Content="Ajouter une zone de prélèvement :"></Label>
+                <Grid>
+                    <StackPanel>
+                        <Label Content="Etude :"></Label>
+                        <ComboBox Name="listeEtudeSelect"
+                              Width="200"
+                              HorizontalAlignment="Left"
+                              DisplayMemberPath="nomEtudeProperty"
+                              ItemsSource="{Binding}"
+                              SelectedItem="{Binding idEtudeProperty}">
+                        </ComboBox>
+                        <Label Content="Plage :"></Label>
+                        <ComboBox Name="listePlageSelect"
+                              Width="200"
+                              HorizontalAlignment="Left"
+                              DisplayMemberPath="nomPlageProperty"
+                              ItemsSource="{Binding}"
+                              SelectedItem="{Binding idPlageProperty}">
+                        </ComboBox>
+                        <Label Content="Angle 1 :"></Label>
+                        <TextBox Name="Angle1TextBox" Height="20" Width="200" HorizontalAlignment="Left" PreviewTextInput="NumberValidationTextBox"/>
+                        <Label Content="Angle 2 :"></Label>
+                        <TextBox Name="Angle2TextBox" Height="20" Width="200" HorizontalAlignment="Left" PreviewTextInput="NumberValidationTextBox"/>
+                        <Label Content="Angle 3 :"></Label>
+                        <TextBox Name="Angle3TextBox" Height="20" Width="200" HorizontalAlignment="Left" PreviewTextInput="NumberValidationTextBox"/>
+                        <Label Content="Angle 4 :"></Label>
+                        <TextBox Name="Angle4TextBox" Height="20" Width="200" HorizontalAlignment="Left" PreviewTextInput="NumberValidationTextBox"/>
+                        <Label Content="Personne :"></Label>
+                        <ComboBox Name="liste2AdminSelect"
+                              Width="200"
+                              HorizontalAlignment="Left"
+                              DisplayMemberPath="nomPersonneProperty"
+                              ItemsSource="{Binding}"
+                              SelectedItem="{Binding idPersonneProperty}">
+                        </ComboBox>
+                        <Button x:Name="addZonePButton" Content="Ajouter" Click="addZonePButton_Click" Height="25" Margin="241,5,230,0" HorizontalAlignment="Center" Width="100" RenderTransformOrigin="0.5,2.31"/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </TabItem>
+
+        <TabItem Header="Zone / Espèce">
+            <StackPanel>
+                <Label Content="Ajouter un nombre d'animaux à une zone :"/>
+                <Grid>
+                    <StackPanel>
+                        <Label Content="Choix de l'espèce :"/>
+                        <ComboBox Name="listeEspeces"
+                                  Width="200"
+                                  DisplayMemberPath="nomEspèceProperty"
+                                  HorizontalAlignment="Left"
+                                  ItemsSource="{Binding}"
+                                  SelectedItem="{Binding idEspece}">
+                        </ComboBox>
+                        
+                        <Label Content="Choix de la zone :"/>
+                        <ComboBox Name="listeZones"
+                              Width="200"
+                              HorizontalAlignment="Left"
+                              ItemsSource="{Binding}"
+                              SelectedItem="{Binding idZonePrelevementProperty}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Zone numéro "/>
+                                        <TextBlock Text="{Binding idZonePrelevementProperty}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+                        <Label Content="Choix de l'étude :"/>
+                        <ComboBox Name="listeEtudes2"
+                                  Width="200"
+                                  DisplayMemberPath="nomEtudeProperty"
+                                  HorizontalAlignment="Left"
+                                  ItemsSource="{Binding}"
+                                  SelectedItem="{Binding idEtudeProperty}">
+                        </ComboBox>
+
+                        <Label Content="Choix de la plage :"/>
+                        <ComboBox Name="listePlages2"
+                                  Width="200"
+                                  DisplayMemberPath="nomPlageProperty"
+                                  HorizontalAlignment="Left"
+                                  ItemsSource="{Binding}"
+                                  SelectedItem="{Binding idPlageProperty}">
+                        </ComboBox>
+
+                        <Label Content="Nombre d'animaux rencontrés"></Label>
+                        <TextBox Name="nbrAnimaux" Height="20" Width="200" HorizontalAlignment="Left" PreviewTextInput="NumberValidationTextBox"/>
+                        <Button x:Name="addZoneEspeceButton" Content="Ajouter" Click="addZoneEButton_Click" Height="25" Margin="241,5,230,0" HorizontalAlignment="Center" Width="100" RenderTransformOrigin="0.5,2.31"/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </TabItem>
+    </TabControl>
+
+    
+    
+
+</Window>
